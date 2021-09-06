@@ -1,0 +1,51 @@
+<style>
+    p {
+        color: red;
+    }
+</style>
+
+<div class="container">
+    <form [formGroup]="contactForm">
+        <!-- Dirty : {{this.contactForm.controls.Name.dirty}}<br>
+    Pristine : {{this.contactForm.controls.Name.pristine}}<br>
+    Touched : {{this.contactForm.controls.Name.touched}}<br>
+    UnTouched : {{this.contactForm.controls.Name.untouched}}<br>
+    Valid : {{this.contactForm.controls.Name.valid}}<br>
+    Invalid : {{this.contactForm.controls.Name.invalid}}<br> -->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" [ngClass]="{
+                    'has-success' :this.contactForm.controls.Name.valid,
+                    'has-error' :this.contactForm.controls.Name.invalid
+                }">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="Name" />
+                </div>
+                <p *ngIf="this.contactForm.controls.Name.invalid">
+                    Name is required.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" formControlName="Email" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Country</label>
+                    <select class="form-control" formControlName="Country">
+                        <option *ngFor="let c of Countries" [value]="c.CID">{{c.CName}}</option>
+                    </select>
+                </div>
+            </div>
+            <!-- <input type="text" class="form-control" formControlName="Country" /> -->
+        </div>
+        <div>     
+        <button class="btn btn-primary" (click)="Save()">save</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+<style>
+    p {
+        color: red;
+    }
+    
+</style>
+
+<div class="container">
+    <form [formGroup]="CreateStudentForm">
+
+        <div class="form-group" [ngClass]="{
+                    'has-success' :this.CreateStudentForm.controls.Name.valid,
+                    'has-error' :this.CreateStudentForm.controls.Name.invalid
+                }">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName="Name" />
+        </div>
+        <p *ngIf="this.CreateStudentForm.controls.Name.invalid">
+            Name is required.
+        </p>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" formControlName="Email" placeholder="name@example.com" />
+        </div>
+        <p *ngIf="this.CreateStudentForm.controls.Email.errors?.email">
+            Please enter valid email.
+        </p>
+
+        <div class="form-group">
+            <label>PhoneNo</label>
+            <input type="text" class="form-control" formControlName="PhoneNo">
+        </div>
+
+        <div>
+            <button class="btn btn-success" (click)="Create()">create</button>
+        </div>
+    </form>
+</div>
